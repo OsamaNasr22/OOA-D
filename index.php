@@ -1,18 +1,21 @@
 <?php
 require_once "Inventory.php";
 require_once "Guitar.php";
+require_once "./Enums/Type.php";
+require_once "./Enums/Wood.php";
+require_once "./Enums/Builder.php";
 
 
 function initInventory(Inventory $inventory){
     for ($i = 0 ; $i< 100;$i++){
-        $inventory->addGuitar(uniqid(), "builder{$i}", "fender{$i}", "test", "test", "test", (float)rand(1, 1000));
+        $inventory->addGuitar($i, Builder::FENDER, "test{$i}", Type::ACOUSTIC, Wood::INDIAN,Wood::MAPLE,  10);
     }
 }
 
 $inventory = new Inventory();
 initInventory($inventory);
 
-$guitar = new Guitar("", "fender", "stratocastor", "electric", "alder", "alder",0);
+$guitar = new Guitar(1, Builder::FENDER, "test1", Type::ACOUSTIC, Wood::INDIAN, Wood::MAPLE,10);
 $guitar = $inventory->search($guitar);
 if ($guitar ){
     echo "<pre>";

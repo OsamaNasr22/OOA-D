@@ -28,6 +28,7 @@ class Inventory
     }
 
     public function search (Guitar $searchGuitar){
+        $matches = [];
         foreach ($this->guitars as $guitar){
             $builder = $searchGuitar->getBuilder();
             if (!$builder && $builder!= $guitar->getBuilder()) continue;
@@ -46,7 +47,8 @@ class Inventory
 
             $topWood = $searchGuitar->getTopWood();
             if (!$topWood && $topWood!= $guitar->getTopWood()) continue;
+            $matches[] = $guitar;
         }
-        return null;
+        return $matches;
     }
 }
