@@ -15,7 +15,7 @@ function initInventory(Inventory $inventory){
 $inventory = new Inventory();
 initInventory($inventory);
 
-$guitar = new Guitar(1, Builder::FENDER, "test1", Type::ACOUSTIC, Wood::INDIAN, Wood::MAPLE,10);
+$guitar = new Guitar(1, Builder::FENDER, "test1", Type::ELECTRIC, Wood::INDIAN, Wood::INDIAN,10);
 $guitar = $inventory->search($guitar);
 if ($guitar ){
     echo "<pre>";
