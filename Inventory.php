@@ -1,6 +1,7 @@
 <?php
 
 require_once "./Guitar.php";
+require_once "./GuitarSpec.php";
 class Inventory
 {
 
@@ -10,8 +11,8 @@ class Inventory
         $this->guitars = [];
     }
 
-    public function addGuitar(string $serialNumber, string $builder, string $model, string $type, string $backWood, string $topWood, float $price){
-        $guitar = new Guitar($serialNumber, $builder, $model, $type, $backWood, $topWood, $price);
+    public function addGuitar(string $serialNumber, float $price, GuitarSpec $guitarSpec){
+        $guitar = new Guitar($serialNumber,$price, $guitarSpec);
         $this->guitars[] = $guitar;
     }
 
@@ -27,23 +28,23 @@ class Inventory
         return  null;
     }
 
-    public function search (Guitar $searchGuitar){
+    public function search (GuitarSpec $guitarSpec){
         $matches = [];
         foreach ($this->guitars as $guitar){
-            $builder = $searchGuitar->getBuilder();
-            if ($builder && $builder!= $guitar->getBuilder()) continue;
+            $builder = $guitarSpec->getBuilder();
+            if ($builder && $builder!= $guitar->getGuitarSpec()->getBuilder()) continue;
 
-            $model = $searchGuitar->getModel();
-            if ($model && $model!= $guitar->getModel()) continue;
+            $model = $guitarSpec->getModel();
+            if ($model && $model!= $guitar->getGuitarSpec()->getModel()) continue;
 
-            $type = $searchGuitar->getType();
-            if ($type && $type!= $guitar->getType()) continue;
+            $type = $guitarSpec->getType();
+            if ($type && $type!= $guitar->getGuitarSpec()->getType()) continue;
 
-            $backWood = $searchGuitar->getBackWood();
-            if ($backWood && $backWood!= $guitar->getBackWood()) continue;
+            $backWood = $guitarSpec->getBackWood();
+            if ($backWood && $backWood!= $guitar->getGuitarSpec()->getBackWood()) continue;
 
-            $topWood = $searchGuitar->getTopWood();
-            if ($topWood && $topWood!= $guitar->getTopWood()) continue;
+            $topWood = $guitarSpec->getTopWood();
+            if ($topWood && $topWood!= $guitar->getGuitarSpec()->getTopWood()) continue;
             $matches[] = $guitar;
         }
         return $matches;
