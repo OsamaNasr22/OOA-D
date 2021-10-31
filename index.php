@@ -9,7 +9,7 @@ require_once "./Enums/Builder.php";
 
 function initInventory(Inventory $inventory){
     for ($i = 0 ; $i< 100;$i++){
-        $spec = new GuitarSpec(Builder::FENDER, "test{$i}", Type::ACOUSTIC, Wood::INDIAN,Wood::MAPLE);
+        $spec = new GuitarSpec(Builder::FENDER, "test{$i}", Type::ACOUSTIC, Wood::INDIAN, Wood::MAPLE,10);
         $inventory->addGuitar($i,  10, $spec);
     }
 }
@@ -17,7 +17,7 @@ function initInventory(Inventory $inventory){
 $inventory = new Inventory();
 initInventory($inventory);
 
-$spec = new GuitarSpec(Builder::FENDER, "test1", Type::ACOUSTIC, Wood::INDIAN,Wood::MAPLE);
+$spec = new GuitarSpec(Builder::FENDER, "test1", Type::ACOUSTIC, Wood::INDIAN, Wood::MAPLE,10);
 $guitar = $inventory->search($spec);
 if ($guitar ){
     echo "<pre>";
